@@ -1,8 +1,14 @@
 import { defineConfig } from 'drizzle-kit';
-import { dbConfig } from '~/server/config/database';
+import { getDbConfig } from './server/config/database';
+
+const dbConfigResult = getDbConfig();
+
+if (dbConfigResult.isErr()) {
+  throw new Error(JSON.stringify(dbConfigResult.error, null, 2));
+}
 
 export default defineConfig({
-  dbCredentials: dbConfig,
+  dbCredentials: dbConfigResult.value,
   dialect: 'postgresql',
   schema: 'server/database/schemas/*.ts',
   out: 'server/database/migrations/',
