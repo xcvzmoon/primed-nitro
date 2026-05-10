@@ -13,7 +13,10 @@
     "release:patch": "changelogen --patch --release && git push --follow-tags",
     "release:minor": "changelogen --minor --release && git push --follow-tags",
     "release:major": "changelogen --major --release && git push --follow-tags",
-    "release:dry": "changelogen --dry"
+    "release:dry": "changelogen --dry",
+    "test": "vitest --run",
+    "test:verbose": "vitest run --reporter=verbose",
+    "test:tree": "vitest run --reporter=tree"
   },
   "devDependencies": {
     "changelogen": "^0.6.2",
@@ -22,7 +25,8 @@
     "nitro": "latest",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
-    "oxlint-tsgolint": "^0.22.1"
+    "oxlint-tsgolint": "^0.22.1",
+    "vitest": "^4.1.5"
   },
   "lint-staged": {
     "*.{js,ts,html,yaml,json,md}": "oxfmt",
