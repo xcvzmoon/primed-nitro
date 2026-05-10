@@ -7,11 +7,14 @@
     "build": "nitro build",
     "dev": "nitro dev",
     "preview": "nitro preview",
-    "fmt": "oxfmt"
+    "fmt": "oxfmt",
+    "lint": "oxlint"
   },
   "devDependencies": {
     "nitro": "latest",
-    "oxfmt": "^0.48.0"
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
+    "oxlint-tsgolint": "^0.22.1"
   },
   "packageManager": "pnpm@11.0.9"
 }
