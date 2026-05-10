@@ -16,10 +16,17 @@
     "release:dry": "changelogen --dry",
     "test": "vitest --run",
     "test:verbose": "vitest run --reporter=verbose",
-    "test:tree": "vitest run --reporter=tree"
+    "test:tree": "vitest run --reporter=tree",
+    "db:generate": "bunx --bun drizzle-kit generate",
+    "db:push": "bunx --bun drizzle-kit push",
+    "db:pull": "bunx --bun drizzle-kit pull",
+    "db:studio": "bunx --bun drizzle-kit studio",
+    "db:check": "bunx --bun drizzle-kit check"
   },
   "devDependencies": {
+    "@types/pg": "^8.20.0",
     "changelogen": "^0.6.2",
+    "drizzle-kit": "1.0.0-beta.22",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.4",
     "nitro": "latest",
@@ -27,6 +34,14 @@
     "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1",
     "vitest": "^4.1.5"
+  },
+  "dependencies": {
+    "consola": "^3.4.2",
+    "drizzle-orm": "1.0.0-beta.22",
+    "drizzle-query-logger": "^1.1.2",
+    "pg": "^8.20.0",
+    "pg-native": "^3.7.0",
+    "zod": "^4.4.3"
   },
   "lint-staged": {
     "*.{js,ts,html,yaml,json,md}": "oxfmt",
