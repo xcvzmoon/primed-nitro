@@ -3,32 +3,41 @@ import { definePlugin } from 'nitro';
 import { useStorage } from 'nitro/storage';
 import useFsDriver from 'unstorage/drivers/fs-lite';
 import useRedisDriver from 'unstorage/drivers/redis';
-import { dbConfig } from '~/server/config/database';
+import { getDbConfig } from '~/server/config/database';
 import { getRedisConfig } from '~/server/config/redis';
 
 export default definePlugin(() => {
-  consola.info(dbConfig && 'Successfully initialized database config');
+  if (process.env.ENABLE_DATABASE === 'TRUE') {
+    const dbConfigResult = getDbConfig();
+
+    if (dbConfigResult.isErr()) {
+      consola.error(dbConfigResult.error);
+      return;
+    }
+
+    consola.info(dbConfigResult.value && 'Successfully initialized database config');
+  }
 
   const storage = useStorage();
 
-  if (process.env.CACHE_STORAGE?.toUpperCase() === 'REDIS') {
-    const redisConfig = getRedisConfig();
+  if (process.env.CACHE_STORAGE === 'REDIS') {
+    const redisConfigResult = getRedisConfig();
 
-    if (redisConfig.isErr()) {
-      consola.error(redisConfig.error);
+    if (redisConfigResult.isErr()) {
+      consola.error(redisConfigResult.error);
       return;
     }
 
     const redisDriver = useRedisDriver({
       base: 'redis',
-      url: redisConfig.value,
+      url: redisConfigResult.value,
     });
 
     storage.mount('cache', redisDriver);
     consola.success('Successfully mounted cache driver');
 
     consola.info(`Using redis for caching`);
-    consola.info(redisConfig.value && 'Successfully initialized redis config');
+    consola.info(redisConfigResult.value && 'Successfully initialized redis config');
   } else {
     const fsDriver = useFsDriver({ base: './.cache' });
 
