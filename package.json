@@ -6,10 +6,12 @@
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev",
-    "preview": "nitro preview"
+    "preview": "nitro preview",
+    "fmt": "oxfmt"
   },
   "devDependencies": {
-    "nitro": "latest"
+    "nitro": "latest",
+    "oxfmt": "^0.48.0"
   },
   "packageManager": "pnpm@11.0.9"
 }
