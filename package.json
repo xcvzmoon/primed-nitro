@@ -8,13 +8,20 @@
     "dev": "nitro dev",
     "preview": "nitro preview",
     "fmt": "oxfmt",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.4",
     "nitro": "latest",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,html,yaml,json,md}": "oxfmt",
+    "*.{js,ts}": "oxlint"
   },
   "packageManager": "pnpm@11.0.9"
 }
