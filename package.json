@@ -1,5 +1,5 @@
 {
-  "name": "primed-nitro",
+  "name": "nitrovel",
   "description": "Nitro but with batteries",
   "version": "0.0.0",
   "type": "module",
@@ -50,5 +50,5 @@
     "*.{js,ts,html,yaml,json,md}": "oxfmt",
     "*.{js,ts}": "oxlint"
   },
-  "packageManager": "pnpm@11.0.9"
+  "packageManager": "pnpm@11.1.1"
 }
